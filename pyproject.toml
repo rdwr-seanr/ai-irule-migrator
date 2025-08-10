@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-irule-migrator"
+version = "0.1.0"
+description = "LangGraph/LangChain iRule -> AppShape++ migrator with RAG"
+authors = [ { name = "Your Name" } ]
+requires-python = ">=3.11"
+readme = "README.md"
+license = { text = "MIT" }
+
+[project.optional-dependencies]
+dev = [
+  "fastapi",
+  "uvicorn[standard]",
+  "langchain",
+  "langgraph",
+  "openai",
+  "tiktoken",
+  "psycopg[binary]",
+  "sqlalchemy>=2.0",
+  "pgvector",
+  "pydantic>=2",
+  "python-multipart",
+  "pypdf",
+  "python-docx",
+  "python-pptx",
+  "markdown",
+  "watchfiles",
+  "orjson",
+  "tenacity",
+  "numpy",
+  "scikit-learn",
+  "opentelemetry-sdk",
+  "opentelemetry-exporter-otlp",
+  "pytest",
+  "pytest-asyncio",
+  "httpx",
+  "rich"
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+pythonpath = ["."]
+
+[tool.setuptools.packages.find]
+where = ["."]
