@@ -7,8 +7,13 @@ __pycache__/
 # Environments
 .venv/
 .env
+.env.local
+.env.*.local
 env/
 venv/
+ENV/
+env.bak/
+venv.bak/
 
 # IDE / tooling
 .vscode/
@@ -33,3 +38,16 @@ storage/
 # OS
 .DS_Store
 Thumbs.db
+
+# Security - API Keys and secrets
+*.key
+*.pem
+secrets.json
+credentials.json
+config.local.*
+.secrets
+apikey*
+*api_key*
+*secret*
+!*secret*.template
+!*secret*.example

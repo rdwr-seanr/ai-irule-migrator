@@ -1,6 +1,7 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi import BackgroundTasks
-from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse, FileResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 import json, time
 from pydantic import BaseModel
 from typing import List, Optional, Dict, Any
@@ -19,6 +20,12 @@ from packages.settings import settings
 import time
 
 app = FastAPI(title="ai-irule-migrator")
+# Static UI
+app.mount("/static", StaticFiles(directory="apps/api/static"), name="static")
+
+@app.get("/")
+async def index():
+    return FileResponse("apps/api/static/index.html")
 
 # In-memory stubs (replace with DB / queue)
 INGEST_JOBS = None  # deprecated
@@ -184,5 +191,5 @@ async def _rl_mw(request, call_next):
     try:
         rate_limiter(client_ip)
     except HTTPException as e:
-        return HTTPException(status_code=e.status_code, detail=e.detail)
+        return JSONResponse(status_code=e.status_code, content={"detail": e.detail})
     return await call_next(request)

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI iRule Migrator</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>AI iRule Migrator</h1>
+    <p>Convert F5 iRules to Radware AppShape++, ask questions about your docs, and manage ingestion.</p>
+  </header>
+
+  <main>
+    <section id="migrate">
+      <h2>Migrate iRule</h2>
+      <div class="card">
+        <label class="file-label">
+          <input id="iruleFile" type="file" accept=".tcl,.txt" />
+          <span>Select .tcl or .txt</span>
+        </label>
+        <button id="migrateBtn">Convert to AppShape++</button>
+        <div id="migrateStatus" class="status"></div>
+        <div id="migrateResult" class="result hidden">
+          <div class="row">
+            <div>
+              <h3>Migration Report</h3>
+              <pre id="report"></pre>
+            </div>
+            <div>
+              <h3>Generated AppShape++</h3>
+              <button id="copyScript" class="small">Copy</button>
+              <pre id="script" class="code"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="qa">
+      <h2>Ask Your Docs</h2>
+      <div class="card">
+        <input id="qaQuestion" type="text" placeholder="e.g., How to set HTTP headers in AppShape++?" />
+        <button id="qaBtn">Ask</button>
+        <div id="qaStatus" class="status"></div>
+        <div id="qaResult" class="result hidden">
+          <h3>Answer</h3>
+          <div id="answer" class="answer"></div>
+          <h3>Citations</h3>
+          <ul id="citations"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="ingest">
+      <h2>Ingest Documentation (Admin)</h2>
+      <div class="card">
+        <label class="file-label">
+          <input id="docsFiles" type="file" multiple accept=".pdf,.pptx,.docx,.txt,.md" />
+          <span>Select docs to ingest</span>
+        </label>
+        <input id="tags" type="text" placeholder="tags (comma separated)" />
+        <label class="checkbox"><input id="replace" type="checkbox" /> Replace existing</label>
+        <button id="ingestBtn">Upload & Index</button>
+        <div id="ingestStatus" class="status"></div>
+        <div id="ingestResult" class="result hidden">
+          <pre id="ingestReport"></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <small>Local demo UI. Endpoints: <code>/v1/migrate</code>, <code>/v1/qa</code>, <code>/v1/ingest</code></small>
+  </footer>
+
+  <script src="/static/app.js"></script>
+  <script>window.__API_BASE__ = '';</script>
+</body>
+</html>
+

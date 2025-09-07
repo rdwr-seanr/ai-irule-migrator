@@ -1,0 +1,6 @@
+{
+  "HTTP::header": {"target": "set_header", "source": "docs/AlteonOS-34-5-4-AppShape-Ref.pdf"},
+  "HTTP::uri": {"target": "rewrite_uri", "source": "docs/AlteonOS-34-5-4-AppShape-Ref.pdf"},
+  "HTTP::method": {"target": "get_method", "source": "docs/AlteonOS-34-5-4-AppShape-Ref.pdf"}
+}
+
